@@ -1,13 +1,17 @@
 import java.util.*;
 
 public class Elevator {
+    static int elevatorNum = 0;
     private int mCurrentFloor;
     private int mDestinationFloor;
     private int mElevatorNum;
-    private String mCurrentState;
+    private currentState mCurrentState;
+    private currentDirection mCurrentDirection;
 
     public Elevator(int mElevatorNum, String a){
-        mCurrentState = currentState.IDLE_STATE.name();
+        mCurrentState = currentState.IDLE_STATE;
+        mCurrentDirection = currentDirection.NOT_MOVING;
+        elevatorNum++;
     }
 
 
@@ -30,11 +34,28 @@ public class Elevator {
 
     // updates the current state of the elevator
     public void tick(){
-
+        switch (mCurrentState){
+            case IDLE_STATE:
+                mCurrentState = currentState.ACCELERATING;
+                break;
+            case DOORS_OPENING:
+                mCurrentState = currentState.UNLOADING_PASSENGERS;
+                break;
+            case UNLOADING_PASSENGERS:
+                mCurrentState = currentState.ACCELERATING;
+                mCurrentDirection = currentDirection.NOT_MOVING;
+                break;
+            case DECELERATING:
+                mCurrentState = currentState.DOORS_OPENING;
+                break;
+            default:
+                break;
+        }
     }
 
     // represents the overall state of the elevator
     public String toString(){
-        return null;
+        return "Elevator " + mElevatorNum + " - Floor " + mCurrentFloor + " - " + mCurrentState + " - " +
+                mCurrentDirection + " - Passengers ";
     }
 }
