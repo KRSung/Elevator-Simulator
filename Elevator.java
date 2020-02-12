@@ -35,7 +35,7 @@ public class Elevator {
 
     // represents the overall state of the elevator
     public String toString(){
-
+        return null;
     }
 
     public static void main(String[] args) {
