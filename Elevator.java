@@ -3,6 +3,13 @@ import java.util.*;
 public class Elevator {
     private int mCurrentFloor;
     private int mDestinationFloor;
+    private int mElevatorNum;
+    private String mCurrentState;
+
+    public Elevator(int mElevatorNum, String a){
+        mCurrentState = currentState.IDLE_STATE.name();
+    }
+
 
     enum currentDirection {
         UP,
@@ -11,7 +18,7 @@ public class Elevator {
     }
 
     enum currentState{
-        DLE_STATE,
+        IDLE_STATE,
         DOORS_OPENING,
         UNLOADING_PASSENGERS,
         LOADING_PASSENGERS,
@@ -19,6 +26,16 @@ public class Elevator {
         ACCELERATING,
         MOVING,
         DECELERATING
+    }
+
+    // updates the current state of the elevator
+    public void tick(){
+
+    }
+
+    // represents the overall state of the elevator
+    public String toString(){
+
     }
 
     public static void main(String[] args) {
